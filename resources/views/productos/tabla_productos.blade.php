@@ -29,46 +29,46 @@
     </div>
 
     <script>
+    function cargarProductos() {
+        $.ajax({
+            url: '/productos/obtener',
+            method: 'GET',
+            success: function(data) {
+                const tableBody = $('#productos-table-body');
+                tableBody.empty();
+                data.forEach(producto => {
+                    const row = `<tr>
+                        <td>${producto.nombre}</td>
+                        <td>${producto.detalle}</td>
+                        <td>${producto.precio}</td>
+                        <td><img src="/storage/${producto.imagen}" alt="${producto.nombre}" width="50"></td>
+                        <td>${producto.nombre_categoria}</td>
+                        <td>${producto.active ? 'Sí' : 'No'}</td>
+                        <td>
+                            <a href="/productos/actualizar/vista?id=${producto.id}" class="btn btn-warning">Actualizar</a>
+                            <button class="btn btn-danger" onclick="eliminarProducto(${producto.id})">Eliminar</button>
+                        </td>
+                    </tr>`;
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
+
+    function eliminarProducto(id) {
+        $.ajax({
+            url: `/productos/eliminar/${id}`,
+            method: 'GET',
+            success: function() {
+                cargarProductos();
+            },
+            error: function(error){
+                console.log(error)
+            }
+        });
+    }
+
         $(document).ready(function() {
-            function cargarProductos() {
-                $.ajax({
-                    url: '/productos/obtener',
-                    method: 'GET',
-                    success: function(data) {
-                        const tableBody = $('#productos-table-body');
-                        tableBody.empty();
-                        data.forEach(producto => {
-                            const row = `<tr>
-                                <td>${producto.nombre}</td>
-                                <td>${producto.detalle}</td>
-                                <td>${producto.precio}</td>
-                                <td><img src="/storage/${producto.imagen}" alt="${producto.nombre}" width="50"></td>
-                                <td>${producto.nombre_categoria}</td>
-                                <td>${producto.active ? 'Sí' : 'No'}</td>
-                                <td>
-                                    <a href="/productos/actualizar/vista?id=${producto.id}" class="btn btn-warning">Actualizar</a>
-                                    <button class="btn btn-danger" onclick="eliminarProducto(${producto.id})">Eliminar</button>
-                                </td>
-                            </tr>`;
-                            tableBody.append(row);
-                        });
-                    }
-                });
-            }
-
-            function eliminarProducto(id) {
-                $.ajax({
-                    url: `/productos/eliminar/${id}`,
-                    method: 'GET',
-                    success: function() {
-                        cargarProductos();
-                    },
-                    error: function(error){
-                        console.log(error)
-                    }
-                });
-            }
-
             cargarProductos();
         });
     </script>
