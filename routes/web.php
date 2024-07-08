@@ -3,10 +3,26 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\ExcelController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login/vista', [UsuariosController::class, 'vistaLogin']);
+Route::post('/login', [UsuariosController::class, 'logear']);
+Route::get('/logout', [UsuariosController::class, 'logout']);
+
+Route::get('/registro/vista', [UsuariosController::class, 'vistaRegistro']);
+Route::post('/registro', [UsuariosController::class, 'registrar']);
+
+Route::get('/perfil/vista', [UsuariosController::class, 'vistaPerfil']);
+
+Route::get('/enviar_correo/{destinatario}', [CorreoController::class, 'enviarCorreo']);
+
+Route::get('/excel/productos', [ExcelController::class, 'exportarProductos']);
 
 Route::get('/productos/vista', [ProductosController::class, 'obtenerProductosVista']);
 Route::get('/productos/obtener', [ProductosController::class, 'obtenerProductos']);
