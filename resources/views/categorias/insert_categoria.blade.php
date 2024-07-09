@@ -13,8 +13,12 @@
             @csrf
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" required>
+                <input type="text" id="nombre" name="nombre" class="form-control" required minlength="3" maxlength="10">
             </div>
+            <!-- <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" id="cantidad" name="cantidad" class="form-control" required min="3" max="10">
+            </div> -->
             <button type="submit" class="btn btn-primary">Insertar Categoría</button>
         </form>
     </div>

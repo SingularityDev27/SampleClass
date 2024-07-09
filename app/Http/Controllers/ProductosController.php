@@ -65,7 +65,7 @@ class ProductosController extends Controller
         DB::table('productos')->insert($data);
 
         // DB::table('productos')->insert([
-        //     'nombre' => $request->nombre,
+        //     'nombre' => $request->name,
         //     'detalle' => $request->detalle,
         //     'precio' => $request->precio,
         //     'categoria_id' => $request->categoria_id,

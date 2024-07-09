@@ -14,6 +14,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Fecha Creacion</th>
+                    <th>Fecha Actualizacion</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -51,6 +53,8 @@
                     const row = `<tr>
                         <td>${categoria.id}</td>
                         <td>${categoria.nombre}</td>
+                        <td>${categoria.created_at}</td>
+                        <td>${categoria.updated_at}</td>
                         <td>
                             <a href="/categorias/actualizar/vista?id=${categoria.id}" class="btn btn-warning">Actualizar</a>
                             <button type="button" class="btn btn-danger" onclick="eliminarCategoria(${categoria.id});">Eliminar</button>

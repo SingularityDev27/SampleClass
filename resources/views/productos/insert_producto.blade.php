@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="imagen">Imagen</label>
-                <input type="file" id="imagen" name="imagen" class="form-control-file" required>
+                <input type="file" id="imagen" name="imagen" class="form-control-file" required accept=".png,.jpg,.jpeg">
             </div>
             <div class="form-group">
                 <label for="categoria_id">Categoría</label>
